@@ -60,8 +60,10 @@ static struct {
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 static int cmd_test(char *args){
   char *ex = strtok(NULL, " ");
-  bool *success = false;
-  expr(ex,success);
+  bool success = false;
+
+  printf("%s\n", ex);
+  expr(ex,&success);
   return 0;
 }
 
