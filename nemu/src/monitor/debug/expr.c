@@ -126,6 +126,7 @@ uint32_t expr(char *e, bool *success) {
 
 float eval(int p,int q){
   if(p > q){
+    printf("ERROR\n");
     assert(0);
   }
   else if(p == q){
