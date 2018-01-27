@@ -24,7 +24,7 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"==", TK_EQ},         // equal
-  {"^[0-9]*+*$",TK_NUM},
+  {"^[0-9]*$",TK_NUM},
   {"\\+", '+'},         // plus
   {"\\-", '-'},
   {"\\*", '*'},
@@ -90,6 +90,7 @@ static bool make_token(char *e) {
           default: 
             strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
             tokens[nr_token].str[substr_len] = '\0';
+            nr_token++;
         }
 
         break;
