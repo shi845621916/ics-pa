@@ -22,6 +22,8 @@ WP* new_wp(){
 	if(free_){
 		WP* result = free_;
 		free_ = free_->next;
+		result->next = head;
+		head = result;
 		return result;
 	}
 	else{
@@ -30,8 +32,18 @@ WP* new_wp(){
 }
 
 void free_wp(WP* wp){
+	WP *p = head;
+	if(p->NO == wp->NO)
+		head = head->next;
+	else{
+		while(p->next->NO != wp->NO){
+			p = p->next;
+		}
+		p->next = p->next->next;
+	}
 	wp->next = free_;
 	free_ = wp;
+
 }
 /* TODO: Implement the functionality of watchpoint */
 
