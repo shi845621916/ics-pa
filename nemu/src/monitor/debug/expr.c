@@ -143,7 +143,7 @@ float eval(int p,int q){
     int op = 0;
     for (int i = 0; i < nr_token; i++)
     {
-      switch(tokens[nr_token].type){
+      switch(tokens[i].type){
         case '(':
           isParenthes++;
           break;
