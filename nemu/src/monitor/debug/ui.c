@@ -70,7 +70,7 @@ static int cmd_test(char *args){
 static int cmd_scan_memory(char *args){
   char *len = strtok(NULL, " ");
   char *addr = strtok(NULL, " ");
-  printf("%x",vaddr_read(atof(addr),atoi(len)));
+  printf("%0x",vaddr_read(atof(addr),atoi(len)));
   return 0;
 }
 
