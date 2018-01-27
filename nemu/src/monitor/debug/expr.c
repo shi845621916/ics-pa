@@ -90,6 +90,7 @@ static bool make_token(char *e) {
           default: 
             strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
             tokens[nr_token].str[substr_len] = '\0';
+            tokens[nr_token].type = rules[i].token_type;
             nr_token++;
         }
 
