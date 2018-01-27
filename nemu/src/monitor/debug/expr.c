@@ -135,6 +135,7 @@ float eval(int p,int q){
 
   }
   else if(check_parentheses(p,q) == true){
+    printf("Has parenthes\n");
     return eval(p+1,q-1);
   }
   else{
