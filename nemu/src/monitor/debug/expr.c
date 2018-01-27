@@ -153,12 +153,12 @@ float eval(int p,int q){
         case '+':
         case '-':
           if(isParenthes == 0)
-            op = nr_token;
+            op = i;
           break;
         case '/':
         case '*':
           if(isParenthes == 0 && tokens[op].type != '+' && tokens[op].type != '-')
-            op = nr_token;
+            op = i;
           break;
       }
     }
