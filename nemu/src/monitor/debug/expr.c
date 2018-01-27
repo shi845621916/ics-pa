@@ -165,7 +165,7 @@ float eval(int p,int q){
     printf("op=%d\n", op);
     float val1 = eval(p, op-1);
     float val2 = eval(op+1, q);
-
+    printf("val1=%f,val2=%f\n",val1,val2 );
     switch(tokens[op].type){
       case '+': return val1 + val2;
       case '-': return val1 - val2;
