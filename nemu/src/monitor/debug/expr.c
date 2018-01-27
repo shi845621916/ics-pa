@@ -3,9 +3,11 @@
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
+#include <stdlib.h>
 #include <sys/types.h>
 #include <regex.h>
-
+float eval(int p,int q);
+bool check_parentheses(int p,int q);
 enum {
   TK_NOTYPE = 256, TK_NUM, TK_EQ
 
@@ -118,6 +120,68 @@ uint32_t expr(char *e, bool *success) {
     printf("type:%d,str:%s\n", tokens[i].type,tokens[i].str);
   }
   //TODO();
-
+  printf("result= %f\n", eval(0,nr_token));
   return 0;
+}
+
+float eval(int p,int q){
+  if(p > q){
+    assert(0);
+  }
+  else if(p == q){
+    return atof(tokens[p].str);
+
+  }
+  else if(check_parentheses(p,q) == true){
+    return eval(p+1,q-1);
+  }
+  else{
+    int isParenthes = 0;
+    int op = 0;
+    for (int i = 0; i < nr_token; i++)
+    {
+      switch(tokens[nr_token].type){
+        case '(':
+          isParenthes++;
+          break;
+        case ')':
+          isParenthes--;
+          break;
+        case '+':
+        case '-':
+          if(isParenthes == 0)
+            op = nr_token;
+          break;
+        case '/':
+        case '*':
+          if(isParenthes == 0 && tokens[op].type != '+' && tokens[op].type != '-')
+            op = nr_token;
+          break;
+      }
+    }
+
+    float val1 = eval(p, op-1);
+    float val2 = eval(op+1, q);
+
+    switch(tokens[op].type){
+      case '+': return val1 + val2;
+      case '-': return val1 - val2;
+      case '*': return val1 * val2;
+      case '/': return val1 / val2;
+      default : assert(0);
+    }
+  }
+}
+
+bool check_parentheses(int p,int q){
+  int isParenthes = 0;
+  for (int i = p; i <= q; i++)
+  {
+    if(tokens[i].type == '('){
+      isParenthes++;
+    }else if(tokens[i].type == ')'){
+      isParenthes--;
+    }
+  }
+  return isParenthes == 0 ? true : false;
 }
