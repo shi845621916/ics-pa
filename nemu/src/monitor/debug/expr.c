@@ -24,7 +24,7 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"==", TK_EQ},         // equal
-  {"^[0-9]*",TK_NUM},
+  {"^[0-9]+",TK_NUM},
   {"\\+", '+'},         // plus
   {"\\-", '-'},
   {"\\*", '*'},
