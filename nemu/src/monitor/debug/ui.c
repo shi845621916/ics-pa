@@ -37,7 +37,9 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
-
+static int cmd_single_step(char *args);
+static int cmd_info(char *args);
+static int cmd_scan_memory(char *args);
 static struct {
   char *name;
   char *description;
@@ -46,12 +48,45 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  { "si", "Single step", cmd_single_step},
+  { "info", "Print infomation", cmd_info},
+  { "x",  "Scan memory",  cmd_scan_memory},
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
+static int cmd_scan_memory(char *args){
+  char *len = strtok(NULL, " ");
+  char *addr = strtok(NULL, " ");
+  printf("%x",vaddr_read(atof(addr),atoi(len)));
+  return 0;
+}
+
+static int cmd_info(char *args){
+  printf("eax:%x\n", cpu.eax);
+  printf("ebx:%x\n", cpu.ebx);
+  printf("ecx:%x\n", cpu.ecx);
+  printf("edx:%x\n", cpu.edx);
+  printf("esp:%x\n", cpu.esp);
+  printf("ebp:%x\n", cpu.ebp);
+  printf("esi:%x\n", cpu.esi);
+  printf("edi:%x\n\n", cpu.edi);
+
+  printf("eip:%x\n", cpu.eip);
+  return 0;
+}
+
+static int cmd_single_step(char *args){
+  if(args == NULL){
+    cpu_exec(1);
+  }
+  else{
+    cpu_exec(atof(args));
+  }
+
+  return 0;
+}
 
 static int cmd_help(char *args) {
   /* extract the first argument */
