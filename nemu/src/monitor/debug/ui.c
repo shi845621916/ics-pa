@@ -40,6 +40,7 @@ static int cmd_help(char *args);
 static int cmd_single_step(char *args);
 static int cmd_info(char *args);
 static int cmd_scan_memory(char *args);
+static int cmd_test(char *args);
 static struct {
   char *name;
   char *description;
@@ -51,11 +52,19 @@ static struct {
   { "si", "Single step", cmd_single_step},
   { "info", "Print infomation", cmd_info},
   { "x",  "Scan memory",  cmd_scan_memory},
+  { "t", "test", cmd_test},
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
+static int cmd_test(char *args){
+  char *ex = strtok(NULL, " ");
+  bool *success = false;
+  expr(ex,success);
+  return 0;
+}
+
 static int cmd_scan_memory(char *args){
   char *len = strtok(NULL, " ");
   char *addr = strtok(NULL, " ");
