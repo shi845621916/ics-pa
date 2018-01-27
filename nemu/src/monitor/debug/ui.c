@@ -63,7 +63,7 @@ static int cmd_test(char *args){
   bool success = false;
 
   printf("%s\n", ex);
-  expr(ex,&success);
+  expr("(8+6)*2-5",&success);
   return 0;
 }
 
