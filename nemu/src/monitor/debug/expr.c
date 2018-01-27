@@ -120,7 +120,7 @@ uint32_t expr(char *e, bool *success) {
     printf("type:%d,str:%s\n", tokens[i].type,tokens[i].str);
   }
   //TODO();
-  printf("result= %f\n", eval(1,nr_token));
+  printf("result= %f\n", eval(0,nr_token-1));
   return 0;
 }
 
