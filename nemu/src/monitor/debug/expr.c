@@ -162,7 +162,7 @@ float eval(int p,int q){
           break;
       }
     }
-
+    printf("op=%d\n", op);
     float val1 = eval(p, op-1);
     float val2 = eval(op+1, q);
 
