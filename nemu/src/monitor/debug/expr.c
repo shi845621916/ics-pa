@@ -117,7 +117,7 @@ uint32_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   for(int i = 0 ; i<nr_token;i++){
-    printf("type:%d,str:%s\n", tokens[i].type,tokens[i].str);
+    printf("i:%d,type:%d,str:%s\n", i,tokens[i].type,tokens[i].str);
   }
   //TODO();
   printf("result= %f\n", eval(0,nr_token-1));
