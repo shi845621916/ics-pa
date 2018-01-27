@@ -177,6 +177,7 @@ float eval(int p,int q){
 }
 
 bool check_parentheses(int p,int q){
+  bool result = false;
   int isParenthes = 0;
   for (int i = p; i <= q; i++)
   {
@@ -186,5 +187,8 @@ bool check_parentheses(int p,int q){
       isParenthes--;
     }
   }
-  return isParenthes == 0 ? true : false;
+
+  if(isParenthes == 0 && tokens[p].type == '(' && tokens[q].type == ')')
+    result = true;
+  return result;
 }
